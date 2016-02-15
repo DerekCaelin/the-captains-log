@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Planet
+  - Star
+  - Thruster
+  - OpeningStar
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - EndMarker
+  - planet
+  - starsndust
+  - star
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: GUI TEXT
+    uniqueID: 1943066201
+    locked: 0
+  - name: starsndust
+    uniqueID: 3338716593
+    locked: 0
+  - name: seekcone
+    uniqueID: 2413469045
+    locked: 0
+  - name: pulsar
+    uniqueID: 199425037
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
