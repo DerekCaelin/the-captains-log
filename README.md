@@ -5,29 +5,14 @@ The Captain's Log was my first large-scale solo project, inspired by watching St
 
 I'd love it if someone took the game, added to it, and improved it. I will be happy to support anyone who wants to do something with it. Please reach out to me on twitter @derekpost.
 
-- Derek Caelin, Februrary 2016
+~ Derek Caelin, Februrary 2016
 
 The Captain's Log Trailer: https://youtu.be/yIFcQln0G6o
 
 Game Description:
 
-"The Captain's Log sets the player as the captain of a star ship that has been lost in space. Find your way home, scavenging for resources, upgrading your ship, embarking on dangerous missions and scouting out worm holes. As you play, the captain will record in his/her log updates about the day, dynamically reacting to the events of the story.
+"The Captain's Log sets the player as the captain of a star ship that has been lost in space. Find your way home, scavenging for resources, upgrading your ship, embarking on dangerous missions and scouting out worm holes. As you play, the captain will record in his/her log updates about the day, dynamically reacting to the events of the story."
 
-Entries from the Captain's Log:
+Download here:
 
-January 31, 2342:
-
-"The Far Jump was supposed have taken us to a neighboring system, only a few hundred light-years away. And here we are, 80,000 lightyears from home."
-
-August 2, 2342:
-
-"After his ship sank in the Antartic, Shackleton kept his crew of twenty-eight alive for a year on little more than seal meat and stubbornness. Now we have to summon up our own measure of perseverance."
-
-February 20, 2343:
-
-"We called the fourth planet of the Subedes system 'Anna' after Lieutenant Galleck, who first detected it on our scans."
-
-September 30, 2344:
-
-"Members of the crew, myself included, would kill to expand our music library. The Bob Dylan album has gotten very, very old."
-
+https://derekcaelin.itch.io/the-captains-log
