@@ -11,6 +11,7 @@ public class playerscript : MonoBehaviour {
 	solscript SolScript;
 
 	public GoogleAnalyticsV3 googleAnalytics;
+	public Canvas canvasThing;
 	
 	public Transform startMarker;
 	Quaternion startRot;
@@ -56,6 +57,15 @@ public class playerscript : MonoBehaviour {
 	public float moraleF = 100f;
 	public float observation;
 	public float researchF;
+
+	public Slider fuelSlider;
+	public Slider waterSlider;
+	public Slider foodSlider;
+	public Slider wormSlider;
+	public Slider researchSlider;
+
+	public Text jumpUI;
+	public Text crewUI;
 
 	//fuel
 	bool fuelout = false;
@@ -1046,8 +1056,8 @@ public class playerscript : MonoBehaviour {
 	void GameEnd(){
 		gameObject.GetComponent<AudioSource>().volume = 0;
 		GameObject.Find("Main Camera").GetComponent<Animation>().Play("endmovement");
-		GameObject.Find ("Crew").SetActive (false);
-		GameObject.Find ("Jumps").SetActive (false);
+		GameObject.Find ("Crew2").SetActive (false);
+		GameObject.Find ("Jumps2").SetActive (false);
 		Soundtracker.PlayATrack();
 		gmscript.WinkOutAllStars();
 		//google analytics
@@ -1089,8 +1099,9 @@ public class playerscript : MonoBehaviour {
 			atObsStar = true;
 			gmscript.FirstWink();
 			Cursor.visible = true;
-			Jumps.enabled = true;
-			Crew.enabled = true;
+			//Jumps.enabled = true;
+			//Crew.enabled = true;
+			canvasThing.enabled = true;
 		}
 
 		screenPosB = GameObject.Find("Main Camera").GetComponent<Camera>().WorldToScreenPoint (sol.transform.position);
@@ -1166,37 +1177,26 @@ public class playerscript : MonoBehaviour {
 					if(Time.timeSinceLevelLoad >= theTimeThatEverythingHappens && !crewdead){
 						//Crew
 						//GUI.Box (new Rect (10, 15, 30, 30), "Crew: " + crew, crewJumpScience);
-						Crew.text = "Crew: "+crew;
+						crewUI.text = "Crew: "+crew;
 
 						//fuel bar
-						GUI.Box (new Rect (30, 45, Screen.width / 7, 20), "", moraleBar);
-						GUI.Box (new Rect (30, 45, Screen.width / 7 / (100 / fuelF), 20), "", fuelBar);
-						GUI.DrawTexture(new Rect (10,45,30,30),littleicons[0]);
+						fuelSlider.value = fuelF/100f;
 		
 						//water bar
-						GUI.Box (new Rect (30, 75, Screen.width / 7, 20), "", moraleBar);
-						GUI.Box (new Rect (30, 75, Screen.width / 7 / (100 / waterF), 20), "", waterBar);
-						GUI.DrawTexture(new Rect (10,75,30,30),littleicons[1]);
+						waterSlider.value = waterF/100f;
+						
 				 
 						//food bar
-						GUI.Box (new Rect (30, 105, Screen.width / 7, 20), "", moraleBar);
-						GUI.Box (new Rect (30, 105, Screen.width / 7 / (100 / foodF), 20), "", foodBar);
-						GUI.DrawTexture(new Rect (10,105,30,30),littleicons[2]);
+						foodSlider.value = foodF/100f;
+						
 
-
-				
-				//morale bar
-						//GUI.Box (new Rect (10, 100, Screen.width / 6 / (100 / moraleF), 15), "MORALE", moraleBar);
-
-						//Observation bar
-						GUI.Box (new Rect (30, 135, Screen.width / 7, 20), "", moraleBar);
-						GUI.Box (new Rect (30, 135, Screen.width / 7 / (100 / observation), 20), "", observationStyle);
-						GUI.DrawTexture(new Rect (10,135,30,30),littleicons[3]);
+						//wormhole bar
+						wormSlider.value = observation/100f;
+						
 					
 						//research bar
-						GUI.Box (new Rect (30, 165, Screen.width / 7, 20), "", moraleBar);
-						GUI.Box (new Rect (30, 165, Screen.width / 7 / (100 / researchF), 20), "", researchBar);
-						GUI.DrawTexture(new Rect (10,165,30,30),littleicons[4]);
+						researchSlider.value = researchF/100f;
+						
 
 						//info button
 						if(infoButton == true && showInfoButton){
@@ -1219,7 +1219,7 @@ public class playerscript : MonoBehaviour {
 						}
 			}
 			if(Time.timeSinceLevelLoad >= theTimeThatEverythingHappens)
-				Jumps.text = "Jumps: "+jumps;
+				jumpUI.text = "Jumps: "+jumps;
 
 
 				}
@@ -1297,9 +1297,6 @@ public class playerscript : MonoBehaviour {
 		GameObject.Find("fuel out").GetComponent<ParticleSystem>().Stop();
 		gmscript.rangeMod = jumpRangeBonus;
 		distanceText = GameObject.Find ("Distance").GetComponent<Text> ();
-	
-		Crew = GameObject.Find ("Crew").GetComponent<Text> ();
-		Jumps = GameObject.Find ("Jumps").GetComponent<Text> ();
 		starNameText = GameObject.Find ("Star Name").GetComponent<Text> ();
 		//gmscript.WinkOutAllStars();
 
