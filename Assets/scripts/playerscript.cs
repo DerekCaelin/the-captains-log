@@ -12,6 +12,8 @@ public class playerscript : MonoBehaviour {
 
 	public GoogleAnalyticsV3 googleAnalytics;
 	public Canvas canvasThing;
+	bool mobile;
+	public Button MakeWormHoleButton;
 	
 	public Transform startMarker;
 	Quaternion startRot;
@@ -223,9 +225,12 @@ public class playerscript : MonoBehaviour {
 		Assign ();
 		RandomizeResourcesKind();
 		ResizeText ();
-		if(Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android){
+		CheckPlatform();
+		if(mobile){
 			Cursor.visible = false;
 		}
+
+		MakeWormHoleButton.interactable = false;
 
 	}
 	
@@ -734,6 +739,9 @@ public class playerscript : MonoBehaviour {
 				observation = 0;
 
 				showWormholeButton = true;
+				MakeWormHoleButton.interactable = true;
+
+
 				/*GameObject pulsarToActivate;
 				pulsarToActivate = SolScript.pulsars[pulsarNo];
 				pulsarToActivate.SetActive(true);
@@ -1108,11 +1116,12 @@ public class playerscript : MonoBehaviour {
 		distanceToEarth = Mathf.RoundToInt(Vector3.Distance (transform.position, sol.transform.position) * 5.5f);
 	}
 
-	void MakeWormHole(){
+	public void MakeWormHole(){
 		Destroy(GameObject.Find("Wormhole Exit"));
 		Destroy(GameObject.Find("Wormhole Entrance"));
 		PlaceWormStart ();
 		PlaceWormFinish ();
+		MakeWormHoleButton.interactable = false;
 	}
 
 	void PlaceWormStart(){
@@ -1161,8 +1170,8 @@ public class playerscript : MonoBehaviour {
 	void OnGUI(){
 				//Show Earth
 				if (screenPosB [2] > 0 && Time.time > theTimeThatEverythingHappens && reachedSol == false) {
-						distanceText.text = "\n"+distanceToEarth+" Lightyears to Home.";
-						distanceText.transform.position = new Vector3(screenPosB[0], screenPosB[1],0);        
+					distanceText.text = "\n"+distanceToEarth+" Lightyears to Home.";
+				 	distanceText.transform.position = new Vector3(screenPosB[0], screenPosB[1],0);        
 				}
 
 
@@ -1185,7 +1194,6 @@ public class playerscript : MonoBehaviour {
 						//water bar
 						waterSlider.value = waterF/100f;
 						
-				 
 						//food bar
 						foodSlider.value = foodF/100f;
 						
@@ -1193,30 +1201,29 @@ public class playerscript : MonoBehaviour {
 						//wormhole bar
 						wormSlider.value = observation/100f;
 						
-					
 						//research bar
 						researchSlider.value = researchF/100f;
 						
 
 						//info button
-						if(infoButton == true && showInfoButton){
+						/*if(infoButton == true && showInfoButton){
 							if (GUI.Button (new Rect (10, 200, 30, 30), infoButton, crewJumpScience)) {
 									showTutorial = true;
 									showResearch = false;
 									NewInstructions();
 
 							} 
-						}
+						}*/
 
 						//wormhole button
-						if(showWormholeButton == true){
+						/*if(showWormholeButton == true){
 							if (GUI.Button (new Rect (50, 200, 30, 30), wormholeButton, crewJumpScience)) {
 								MakeWormHole();
 								showWormholeButton = false;
 
 								
-							} 
-						}
+							}
+						} */
 			}
 			if(Time.timeSinceLevelLoad >= theTimeThatEverythingHappens)
 				jumpUI.text = "Jumps: "+jumps;
@@ -1426,7 +1433,10 @@ public class playerscript : MonoBehaviour {
 		distanceText.color = calpha;
 	}
 
-
+	void CheckPlatform(){
+		if(Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android)
+			mobile = true;
+	}
 
 	
 }

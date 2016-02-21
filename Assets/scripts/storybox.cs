@@ -9,6 +9,7 @@ public class storybox : MonoBehaviour {
 	Transform player;
 	
 	public GoogleAnalyticsV3 googleAnalytics;
+	bool mobile;
 	
 	public int width = 500;
 	public int height = 100;
@@ -204,6 +205,7 @@ public class storybox : MonoBehaviour {
 	//new ui
 	Text StorySpace;
 	public GameObject ExitMenu;
+	public Image StoryBound;
 	
 	//choices
 	public GameObject DecisionPanel;
@@ -252,6 +254,9 @@ public class storybox : MonoBehaviour {
 		player = GameObject.Find ("Player").transform;
 		crew = Playerscript.crew;
 		CreateCrew ();
+
+		CheckMobile();
+
 		InvokeRepeating("Events",2, 30F);
 		GetComponent<Animation> ().Play ("openinglines");
 		
@@ -352,6 +357,7 @@ public class storybox : MonoBehaviour {
 	void FadeWords(){
 		
 		StorySpace.color = alpha;
+		StoryBound.color = alpha;
 		
 		if (fadingin == true) 
 			FadeIn();
@@ -673,7 +679,7 @@ public class storybox : MonoBehaviour {
 		}
 	}
 	
-	void BringUpMenu(){
+	public void BringUpMenu(){
 		
 		if (menu == false) {
 			menu = true;
@@ -2312,16 +2318,15 @@ public class storybox : MonoBehaviour {
 			if(TypeWriterString.EndsWith(".") || TypeWriterString.EndsWith(":") ){
 				yield return new WaitForSeconds (.2f);
 			}
-						if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
-						{
-								yield return new WaitForSeconds	(.01f);			
-						}
-						else
-						{
-								float deltaTime = 0.0f;
-								deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
-								yield return new WaitForSeconds (.01f*(65/(1.0f / deltaTime)));
-						}
+			if (mobile){
+				yield return new WaitForSeconds	(.01f);			
+			}
+			else
+			{
+				float deltaTime = 0.0f;
+				deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
+				yield return new WaitForSeconds (.01f*(65/(1.0f / deltaTime)));
+			}
 		
 			if(TypeWriterString.Length >= theStringOfTheMoment.Length){
 				yield return new WaitForSeconds (1.1f);
@@ -2562,6 +2567,11 @@ void DetermineJourneyCompletage(){
 	if(portionOfJourneyComplete <=.05)
 		journeyStatus = "ending";
 }
+
+	void CheckMobile(){
+		if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
+			mobile = true;
+	}
 
 
 
